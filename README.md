@@ -1,6 +1,6 @@
-# 🦷 Teeth Segmentation and Disease Detection using YOLOv12
+# 🦷 Teeth Segmentation and Disease Detection using YOLOv26
 
-A deep learning–based project for **automatic teeth disease detection** using **YOLOv12 (Ultralytics)**.  
+A deep learning–based project for **automatic teeth disease detection** using **YOLOv26 (Ultralytics)**.  
 This model identifies and localizes different dental issues directly from panoramic or intraoral X-ray images.  
 It provides a foundation for intelligent dental diagnostics and AI-assisted radiographic analysis.
 
@@ -8,9 +8,9 @@ It provides a foundation for intelligent dental diagnostics and AI-assisted radi
 
 ## 🚀 Overview
 
-This repository contains all the resources and implementation details for training, validating, and testing a YOLOv12 model for dental disease detection.
+This repository contains all the resources and implementation details for training, validating, and testing a YOLOv26 model for dental disease detection.
 
-- **Framework**: YOLOv12 (Ultralytics)
+- **Framework**: YOLOv26 (Ultralytics)
 - **Language**: Python
 - **Libraries**: OpenCV, PyTorch, NumPy, Matplotlib
 - **Goal**: Detect diseased teeth and classify dental conditions in X-ray images.
@@ -19,7 +19,7 @@ This repository contains all the resources and implementation details for traini
 
 ## 🧠 Features
 
-- Real-time teeth disease detection using YOLOv12  
+- Real-time teeth disease detection using YOLOv26
 - Bounding box predictions with class labels  
 - Support for training on custom annotated datasets  
 - Visualization of model predictions directly in notebooks  
