@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YOLOv8 Segmentation Result</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #74b9ff, #a29bfe);
+        color: #2d3436;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      h2 {
+        font-size: 2rem;
+        color: #fff;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      .image-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+
+      .image-box {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 650px;
+        transition: transform 0.3s ease;
+      }
+
+      .image-box:hover {
+        transform: translateY(-5px);
+      }
+
+      .image-box h3 {
+        color: #fff;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+      }
+
+      img {
+        max-width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .summary-section {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-top: 20px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 25px 30px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        min-width: 280px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .card h3 {
+        color: #0984e3;
+        margin-bottom: 15px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      ul li {
+        background: #f1f2f6;
+        padding: 8px 10px;
+        border-radius: 6px;
+        margin-bottom: 6px;
+        font-weight: 500;
+      }
+
+      table {
+        margin: auto;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid #dfe6e9;
+        padding: 10px;
+        text-align: center;
+      }
+
+      th {
+        background: #74b9ff;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      tr:nth-child(even) {
+        background: #f1f2f6;
+      }
+
+      /* Styles for the Navigation Links */
+      .nav-button-group {
+        display: flex;
+        flex-direction: column; /* Stack all navigation items vertically */
+        gap: 10px;
+        /* UPDATED MARGIN to move the group into the mid-bottom section */
+        margin: 60px auto 40px auto; 
+        max-width: 500px;
+        width: 90%;
+        align-items: center;
+      }
+
+      /* New container for the two side-by-side buttons */
+      .side-by-side-group {
+        display: flex;
+        width: 100%; /* Take full width of parent group */
+        gap: 10px;
+        justify-content: space-between;
+      }
+
+      .nav-button {
+        display: block;
+        padding: 12px 15px;
+
+        background: linear-gradient(135deg, #636e72, #2d3436);
+
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.2s ease;
+        text-align: center;
+        flex-grow: 1;
+      }
+
+      .home-button {
+        width: 100%;
+      }
+
+      .side-by-side-group .nav-button {
+        background: linear-gradient(135deg, #0984e3, #6c5ce7);
+        font-weight: 600;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .current-task-button {
+        background: linear-gradient(135deg, #74b9ff, #a29bfe);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-weight: 600;
+      }
+
+      .nav-button:hover {
+        background: linear-gradient(135deg, #000, #444);
+        transform: scale(1.01);
+      }
+
+      .side-by-side-group .nav-button:hover {
+        background: linear-gradient(
+          135deg,
+          #0056b3,
+          #007bff
+        ); /* Slightly darker on hover */
+        transform: scale(1.01);
+      }
+
+      .current-task-button:hover {
+        background: linear-gradient(135deg, #74b9ff, #a29bfe);
+        color: #fff;
+      }
+      /* End Navigation Styles */
+
+      footer {
+        margin-top: 40px;
+        color: #dfe6e9;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🦷 {{ title }}</h2>
+    <div class="image-container">
+      <div class="image-box">
+        <h3>Original Image</h3>
+        <img
+          src="data:image/jpeg;base64,{{ img_base64_orig }}"
+          alt="Original Image"
+        />
+      </div>
+      <div class="image-box">
+        <h3>Predicted Image</h3>
+        <img
+          src="data:image/jpeg;base64,{{ img_base64_annot }}"
+          alt="Predicted Image"
+        />
+      </div>
+    </div>
+
+    <div class="summary-section">
+      <div class="card">
+        <h3>Detection Summary</h3>
+        <p><b>Total Objects Detected:</b> {{ total_objects }}</p>
+        <ul>
+          {% for label, count in label_counts.items() %}
+          <li><b>{{ label }}</b>: {{ count }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Detailed Detections</h3>
+        <table>
+          <tr>
+            <th>Label</th>
+            <th>Confidence</th>
+          </tr>
+          {% for label, conf in detections %}
+          <tr>
+            <td>{{ label }}</td>
+            <td>{{ '%.2f'|format(conf) }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+
+    <div class="nav-button-group">
+      <a href="/" class="nav-button home-button">🏠 Home Page</a>
+
+      <div class="side-by-side-group">
+        <a 
+          href="/disease" 
+          class="nav-button 
+            {% if title == 'Dental Disease Prediction Results' %}current-task-button{% endif %}"
+        >
+          🦷 Upload for Disease Prediction
+        </a>
+        
+        <a 
+          href="/number" 
+          class="nav-button 
+            {% if title == 'Teeth Numbering Prediction Results' %}current-task-button{% endif %}"
+        >
+          🔢 Upload for Teeth Segmentation
+        </a>
+      </div>
+    </div>
+    
+    <footer></footer>
+  </body>
+</html>

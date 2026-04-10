@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teeth Analysis Home</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #74b9ff, #a29bfe);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        color: #333;
+      }
+      .header-title {
+        /* UPDATED: White background */
+        background: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        /* Added shadow for depth, similar to the .container */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      .header-title h1 {
+        /* UPDATED: Dark text */
+        color: #2d3436; 
+        margin-bottom: 5px;
+        font-size: 2.5rem;
+        /* Removed text-shadow since the background is light */
+        text-shadow: none; 
+      }
+      .header-title p {
+        /* UPDATED: Dark text */
+        color: #636e72;
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 300;
+      }
+      .container {
+        background: #fff;
+        padding: 40px 60px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 90%;
+        max-width: 500px;
+        margin-top: 20px;
+      }
+      h2 {
+        color: #2d3436;
+        margin-bottom: 40px;
+        font-size: 1.8rem;
+      }
+      
+      /* --- SQUARE BUTTON STYLES --- */
+      .buttons-container {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .choice-button {
+        /* Define a fixed size for the square shape */
+        width: 150px; 
+        height: 150px; 
+        
+        /* Center text inside the button */
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center; 
+        
+        /* Existing visual styles */
+        background: linear-gradient(135deg, #153b99ff, #8274ecff);
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        border-radius: 16px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+        transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        line-height: 1.4; 
+      }
+      
+      .choice-button:hover {
+        transform: scale(1.05);
+        background: linear-gradient(135deg, #74b9ff, #a29bfe);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      
+      .icon {
+        font-size: 2.5rem; 
+        margin-bottom: 5px; 
+      }
+      /* --- END STYLES --- */
+
+    </style>
+  </head>
+  <body>
+    <div class="header-title">
+      <h1>DentalAI</h1>
+      <p>Teeth Disease and Segmentation Prediction using YOLOv26</p>
+    </div>
+    <div class="container">
+      <h2>Select Prediction Type</h2>
+      
+      <div class="buttons-container">
+        
+        <a href="/number" class="choice-button">
+          <span class="icon">🔢</span>
+          Teeth Segmentation
+        </a>
+        <a href="/disease" class="choice-button">
+          <span class="icon">🦷</span>
+          Teeth Disease
+        </a>
+      </div>
+      
+    </div>
+  </body>
+</html>

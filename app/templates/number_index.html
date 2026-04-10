@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YOLOv12 Teeth Segmentation</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #74b9ff, #a29bfe);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        color: #333;
+      }
+
+      .container {
+        background: #fff;
+        padding: 40px 60px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 90%;
+        max-width: 500px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      h2 {
+        color: #2d3436;
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+      }
+
+      p {
+        color: #636e72;
+        margin-bottom: 30px;
+        font-size: 1rem;
+      }
+
+      input[type="file"] {
+        padding: 10px;
+        border: 2px dashed #74b9ff;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        width: 100%;
+        transition: border-color 0.3s ease;
+      }
+
+      input[type="file"]:hover {
+        border-color: #0984e3;
+      }
+
+      input[type="submit"] {
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #0984e3, #6c5ce7);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 25px;
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+
+      input[type="submit"]:hover {
+        background: linear-gradient(135deg, #74b9ff, #a29bfe);
+        transform: scale(1.05);
+      }
+
+      /* Styles for the Navigation Links */
+      .nav-button-group {
+        display: flex;
+        flex-direction: column; /* Stack all navigation items vertically */
+        gap: 10px; 
+        margin-top: 20px;
+        max-width: 500px;
+        width: 90%;
+        align-items: center;
+      }
+      
+      /* New container for the two side-by-side buttons */
+      .side-by-side-group {
+          display: flex;
+          width: 100%; /* Take full width of parent group */
+          gap: 10px;
+          justify-content: space-between;
+      }
+      
+      .nav-button {
+        display: block; 
+        padding: 12px 15px; 
+        
+        background: linear-gradient(135deg, #636e72, #2d3436); 
+        
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.2s ease;
+        text-align: center;
+        flex-grow: 1; 
+      }
+      
+      .home-button {
+          width: 100%;
+      }
+      
+      
+      .side-by-side-group .nav-button {
+          background: linear-gradient(135deg, #0984e3, #6c5ce7); 
+          font-weight: 600;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      
+      .current-task-button {
+        background: linear-gradient(135deg, #74b9ff, #a29bfe); 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-weight: 600;
+      }
+
+      .nav-button:hover {
+        background: linear-gradient(135deg, #000, #444);
+        transform: scale(1.01); 
+      }
+      
+      .side-by-side-group .nav-button:hover {
+          background: linear-gradient(135deg, #0056b3, #007bff); /* Slightly darker on hover */
+          transform: scale(1.01);
+      }
+
+      .current-task-button:hover {
+          background: linear-gradient(135deg, #74b9ff, #a29bfe);
+          color: #fff;
+      }
+      /* End Navigation Styles */
+
+      footer {
+        margin-top: 30px;
+        color: #dfe6e9;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+     <div class="container">
+      <h2>🔢 YOLOv12 Teeth Segmentation</h2>
+      <p>Upload a dental X-ray image to predict the number and type of teeth.</p>
+
+      <form action="/predict/number" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required />
+        <br />
+        <input type="submit" value="Predict" />
+      </form>
+    </div>
+
+    <div class="nav-button-group">
+        
+      <a href="/" class="nav-button home-button">🏠 Home Page</a>
+      
+      <div class="side-by-side-group">
+        <a href="/disease" class="nav-button current-task-button">🦷 Upload for Disease Prediction</a>
+        <a href="/number" class="nav-button">🔢 Upload for Teeth Segmentation</a>
+      </div>
+
+    </div>
+
+    <footer></footer>
+  </body>
+</html>
